@@ -28,7 +28,7 @@ class Producto
             $stmt->bindParam(':stock', $stock);
             $stmt->execute(); //ejecutamos la consulta
         } catch (\Exception $e) {
-            echo("Error al guardar el producto: " . $e->getMessage());
+            echo ("Error al guardar el producto: " . $e->getMessage());
         }
     }
 
@@ -43,7 +43,7 @@ class Producto
             $stmt->bindParam(':stock', $stock);
             $stmt->execute();
         } catch (\Exception $e) {
-            echo("Error al actualizar el producto: " . $e->getMessage());
+            echo ("Error al actualizar el producto: " . $e->getMessage());
         }
     }
 
@@ -54,5 +54,17 @@ class Producto
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function eliminar($id)
+    {
+        try {
+            $sql = "DELETE FROM productos WHERE id = :id";
+            $stmt = $this->conexion->conectar()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } catch (\Exception $e) {
+            echo ("Error al eliminar el producto: " . $e->getMessage());
+        }
     }
 }

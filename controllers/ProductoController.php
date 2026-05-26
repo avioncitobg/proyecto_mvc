@@ -25,13 +25,19 @@ class ProductoController
 
     public function editar()
     {
-       $producto = $this->producto->obtenerPorId($_GET['id']); //obtenemos el producto por su id para mostrarlo en el formulario de edición
-       include './views/editar.php'; //incluimos la vista de edición
+        $producto = $this->producto->obtenerPorId($_GET['id']); //obtenemos el producto por su id para mostrarlo en el formulario de edición
+        include './views/editar.php'; //incluimos la vista de edición
     }
 
     public function actualizar()
     {
         $this->producto->actualizar($_POST['id'], $_POST['nombre'], $_POST['precio'], $_POST['stock']);
+        header('Location: index.php');
+    }
+
+    public function eliminar()
+    {
+        $this->producto->eliminar($_GET['id']);
         header('Location: index.php');
     }
 }

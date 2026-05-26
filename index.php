@@ -12,7 +12,7 @@ elseif (isset($_GET['actualizar'])) {
     $controller->actualizar();
 }
 elseif (isset($_GET['eliminar'])) {
-    // $controller->eliminar();
+    $controller->eliminar();
 } else {
     $controller->index();
 }
