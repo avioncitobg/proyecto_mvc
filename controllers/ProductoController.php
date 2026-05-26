@@ -2,7 +2,8 @@
 
 require_once './models/Producto.php'; //para poder usar el modelo de Producto
 
-class ProductoController{
+class ProductoController
+{
     private $producto;
 
     public function __construct()
@@ -10,8 +11,15 @@ class ProductoController{
         $this->producto = new Producto(); //instanciamos
     }
 
-    public function index(){
+    public function index()
+    {
         $productos = $this->producto->listar(); //ejecutamo el metodo desde el modelo
         include './views/listar.php'; //incluimos la vista
+    }
+
+    public function guardar()
+    {
+        $this->producto->guardar($_POST['nombre'], $_POST['precio'], $_POST['stock']); //ejecutamos el metodo guardar del modelo, pasandole los datos del formulario
+        header('Location: index.php');
     }
 }
